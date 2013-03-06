@@ -5,8 +5,9 @@
 
     function open_in_new_window () {
         var links = $$('a');
+        var toc_links = $$('.toc a');
         links.each(function(link){
-            if ( link.href.indexOf('http') == 0){
+            if ( link.href.indexOf('http') == 0 && !toc_links.contains(link)){
                 link.setAttribute('target', '_blank')
             }
         });

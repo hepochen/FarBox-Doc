@@ -16,7 +16,7 @@
 | 文章分类页 | /category/`<path>` | category.html | path是对应的文件夹路径，显示该文件夹的所有文章 |
 | 标签匹配页 | /tags/`<tags>` | tags.html |单标签`/tags/tag1`; 多标签`/tags/tag1+tag2` |
 | 博客归档页 | /archive | archive.html|
-| 文件目录 |/folder/ & /folder/`<path>` | folder.html| 现仅支持图片,具体规则，见[《图片与文件》](/docs/files/finder.md) |
+| 文件目录 |/folder/ & /folder/`<path>` | folder.html| 现仅支持图片 |
 | 单文件详细 | /file/`<path>` | file.html | 现仅支持图片 |
 | RSS订阅页 | /feed | feed.html | 默认全文输出，可自定义 |
 | MarkDown文档页 | /`<path>`| markdown.html| 对普通文章类文件(markdown为主)进行HTML渲染|
