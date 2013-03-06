@@ -1,0 +1,17 @@
+
+<script type="text/javascript" src="http://lib.sinaapp.com/js/mootools/1.3.1/mootools.min.js"></script>
+
+<script type="text/javascript">
+
+    function open_in_new_window () {
+        var links = $$('a');
+        links.each(function(link){
+            if ( link.href.indexOf('http') == 0){
+                link.setAttribute('target', '_blank')
+            }
+        });
+    }
+
+    document.addEvent('domready', open_in_new_window)
+
+</script>

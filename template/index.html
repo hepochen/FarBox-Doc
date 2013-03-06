@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>{{site.title}}</title>
+
+    <link rel="stylesheet" href="/template/css/style.css">
+
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/mootools/1.3.1/mootools.min.js"></script>
+</head>
+<body>
+
+
+<div id="nav">
+
+    <ul>
+        {% for folder in get_folders('/docs') %}
+            <li>{{ folder.title }}</li>
+
+            {% set posts = get_posts(folder.path) %}
+            {% if posts %}
+            <ul>
+            {% for post in posts %}
+                <li>
+                    <a href="{{ post.url }}">{{post.title}}</a>
+                </li>
+            {%endfor%}
+            </ul>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+</div>
+
+<iframe id="content" src="landing"></iframe>
+
+
+<script type="text/javascript">
+
+    document.addEvent('domready', function(){
+
+        set_content_width();
+        select_current();
+        change_onclick();
+
+    });
+
+    function set_content_width(){
+        var width = window.getWidth() - $('nav').getWidth();
+        $('content').style.setProperty('width', width-20+'px');
+    }
+
+    function change_onclick(){
+        var docs = $$('#nav a');
+        docs.each(function(doc){
+            var href = doc.href;
+            doc.href = '#'+doc.innerText;
+            doc.onclick = function(){
+                $('content').set('src', href);
+            }
+        });
+    }
+
+
+    function select_current(){
+        var name = document.location.hash;
+        name = name.replace('#', '');
+        var links = $$('#nav a');
+        for (var i=0; i<links.length; i++)
+        {
+            var link = links[i];
+            if (link.innerText.trim() == name){
+                $('content').set('src', link.href);
+            }
+        }
+    }
+
+    window.onresize = set_content_width;
+
+
+</script>
+
+</body>
+</html>

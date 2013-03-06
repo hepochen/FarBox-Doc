@@ -1,0 +1,50 @@
+
+body {
+    width: 780px;
+    margin: 0 auto;
+    -webkit-text-size-adjust:none;
+    overflow-x: hidden;
+}
+
+
+a{
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #E60900;
+}
+
+
+#slogan {
+    margin-top: 150px;
+    letter-spacing: 5px;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#slogan small{
+    font-size: 10px;
+}
+
+#content {
+    font-family: 'Lato', serif;
+}
+
+
+.buttons {
+    text-align: center;
+    margin-top: 70px;
+}
+
+
+.buttons a{
+    margin: 0 25px;
+}
+
+
+.buttons a:hover{
+    color: red;
+}

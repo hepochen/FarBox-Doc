@@ -1,0 +1,48 @@
+body{
+    height: 100%;
+    font-size: 12px;
+    overflow: hidden;
+    font-family: "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    margin: 0;
+}
+
+
+#nav {
+    float: left;
+    width: 260px;
+    line-height: 1.8em;
+    overflow: auto;
+    letter-spacing: 1px;
+    background: #fafafa;
+    border-radius: 5px;
+    border: 1px solid #f0f0eb;
+    position: fixed;
+    left: 15px;
+    top: 10px;
+}
+
+#nav a{
+    color: #555;
+    text-decoration: none;
+}
+
+#nav a:hover{
+    color: #E60900;
+}
+
+#nav ul{
+    padding: 0 20px 10px 20px;
+}
+
+#nav ul li{
+    padding: 0;
+    margin: 0;
+}
+
+
+#content {
+    width: 760px;
+    float: right;
+    height: 100%;
+    border: none;
+}

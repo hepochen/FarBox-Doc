@@ -1,0 +1,4 @@
+*.log
+preview/
+*.DS_Store
+.idea/

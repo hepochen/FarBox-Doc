@@ -1,0 +1,27 @@
+body {
+    overflow-x: hidden;
+    padding: 0 20px;
+    font-size: 13px;
+    margin-bottom: 50px;
+    line-height: 2.1;
+}
+
+
+
+.toc{
+    background: #fafafa;
+    border-radius: 5px;
+    border: 1px solid #f0f0eb;
+    margin: 27px 0 47px 0;
+    padding: 0;
+}
+
+.toc ul{
+    padding: 5px 25px;
+}
+
+.toc ul li{
+    padding: 0;
+    margin: 0;
+    line-height: 2.1em;
+}
