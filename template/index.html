@@ -38,16 +38,15 @@
 <script type="text/javascript">
 
     document.addEvent('domready', function(){
-
-        set_content_width();
+        set_content_size();
         select_current();
         change_onclick();
-
     });
 
-    function set_content_width(){
+    function set_content_size(){
         var width = window.getWidth() - $('nav').getWidth();
         $('content').style.setProperty('width', width-20+'px');
+        $('content').style.setProperty('height', document.getHeight()+'px');
     }
 
     function change_onclick(){
@@ -75,7 +74,7 @@
         }
     }
 
-    window.onresize = set_content_width;
+    window.onresize = set_content_size;
 
 
 </script>

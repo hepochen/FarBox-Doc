@@ -1,4 +1,4 @@
 *.log
-preview/
+fb.preview/
 *.DS_Store
 .idea/

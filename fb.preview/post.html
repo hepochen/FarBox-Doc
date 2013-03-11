@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title></title>
+
+    <link rel="stylesheet" href="http://resource.farbox.com/css/basic.css?version=1361111187">
+
+    <link rel="stylesheet" href="../template/css/post.css">
+</head>
+<body>
+
+
+    <div class="post">
+        <h2 class="title"><a href="/post/docs/mo-banapi-wen-dang/farbox-de-mo-ban-yin-qing">FarBox的模板引擎</a></h2>
+
+        <div class="post_body">
+            <div class="toc">
+                <ul>
+                    <li><a href="#farbox">FarBox的模板引擎</a><ul>
+                        <li><a href="#jinja2">Jinja2</a><ul>
+                            <li><a href="#jinja2_1">Jinja2语法简单示例</a></li>
+                            <li><a href="#_1">简要说明</a></li>
+                        </ul>
+                        </li>
+                        <li><a href="#farbox_1">FarBox模板</a><ul>
+                            <li><a href="#_2">模板目录所在的位置</a></li>
+                            <li><a href="#_3">静态资源的访问</a></li>
+                        </ul>
+                        </li>
+                    </ul>
+                    </li>
+                </ul>
+            </div>
+            <h2 id="jinja2">Jinja2</h2>
+            <blockquote>
+                <p>我们使用Jinja2(python的语法)的模板引擎，关于模板引擎的语法可参照 <a href="http://jinja.pocoo.org/docs/">其官网文档</a>、 <a href="http://docs.torriacg.org/docs/jinja2/templates.html">《中文文档》</a></p>
+            </blockquote>
+            <h3 id="jinja2_1">Jinja2语法简单示例</h3>
+            <div class="codehilite"><pre><span class="nt">&lt;ul&gt;</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">user</span> <span class="k">in</span> <span class="nv">users</span> <span class="cp">%}</span>
+    <span class="cp">{%</span> <span class="k">if</span> <span class="nv">user.age</span> <span class="o">&gt;</span><span class="m">10</span> <span class="cp">%}</span>
+    <span class="nt">&lt;li&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">user.url</span><span class="o">|</span><span class="nf">command1</span><span class="cp">}}</span><span class="s">&quot;</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">user.username</span><span class="o">|</span><span class="nf">command2</span><span class="o">(</span><span class="nv">color</span><span class="o">=</span><span class="kp">True</span><span class="o">)</span> <span class="cp">}}</span>
+        <span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="nt">&lt;/ul&gt;</span>
+</pre></div>
+
+
+            <h3 id="_1">简要说明</h3>
+            <ol>
+                <li>
+                    <p><code>{%  %}</code>包裹着的一些代码块，通常是<code>{% for … %}{% endfor %}</code> <code>{% if %}{% elif %} {% else %} {% endif %}</code></p>
+                </li>
+                <li>
+                    <p><code>{{ var }}</code>这表示取变量</p>
+                </li>
+                <li>
+                    <p><code>{{ var|command }}</code>中，command是一个函数，效果相当于<code>command(var)</code>从而得到新的值</p>
+                </li>
+                <li>
+                    <p><code>{{ var|command(v1, v2) }}</code>,效果相当于<code>command(var, v1, v2)</code></p>
+                </li>
+            </ol>
+            <p><em>command这种类型的函数，在Jinja2中，称之为filters（滤镜）。</em></p>
+            <hr />
+            <h2 id="farbox_1">FarBox模板</h2>
+            <h3 id="_2">模板目录所在的位置</h3>
+            <p><strong>假设你现在的网站目录为<code>Dropbox/Apps/FarBox/MyBlog/</code></strong></p>
+            <ol>
+                <li>
+                    <p>模板页面则要放置于<code>Dropbox/Apps/FarBox/MyBlog/template/</code>的目录下</p>
+                </li>
+                <li>
+                    <p><code>/.template/</code> <code>/templates/</code> <code>/.templates/</code>也等同于<code>template</code>，取名可按照自己的喜好；特别是以<code>.</code>开头的文件夹，通常会被操作系统隐藏，有视觉洁癖的，推荐之。</p>
+                </li>
+            </ol>
+            <hr />
+            <h3 id="_3">静态资源的访问</h3>
+            <blockquote>
+                <p>静态资源是指css、js、图片、字体等文件，并且大小不超过<strong>500k</strong>。</p>
+            </blockquote>
+            <p>静态资源是通过<code>/template/&lt;path&gt;</code>或<code>/t/&lt;path&gt;</code>这个路径来实现访问的，并且，如果模板被别人使用时，静态资源也会同样生效。</p>
+            <p>以<code>/template/</code>目录举例说明:</p>
+            <div class="codehilite"><pre><span class="o">|--</span> <span class="n">template</span>
+    <span class="o">|--</span> <span class="n">index</span><span class="p">.</span><span class="n">html</span>
+    <span class="o">|--</span> <span class="n">css</span>
+        <span class="o">--</span> <span class="n">style</span><span class="p">.</span><span class="n">css</span>  <span class="o">--&gt;</span> 它可以通过<span class="o">/</span><span class="n">t</span><span class="o">/</span><span class="n">css</span><span class="o">/</span><span class="n">style</span><span class="p">.</span><span class="n">css</span>访问
+    <span class="o">|--</span> <span class="n">js</span>
+        <span class="o">--</span> <span class="n">behavior</span><span class="p">.</span><span class="n">js</span> <span class="o">--&gt;</span> 它可以通过<span class="o">/</span><span class="n">t</span><span class="o">/</span><span class="n">js</span><span class="o">/</span><span class="n">behavior</span><span class="p">.</span><span class="n">js</span>访问
+</pre></div>
+
+
+            <blockquote>
+                <p>因为url以<code>/t/</code>为开头的，指向的是template，所以，你直接放在网站目录下的<code>/t/</code>文件夹是不会生效的；同理，<code>/post/</code> <code>/cateogry/</code> 等系统优先的url亦然。</p>
+            </blockquote>
+        </div>
+
+    </div>
+
+</body>
+</html>
