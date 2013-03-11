@@ -32,7 +32,7 @@
 
 </div>
 
-<iframe id="content" src="landing"></iframe>
+<iframe id="content" frameborder="no" src="landing"></iframe>
 
 
 <script type="text/javascript">
@@ -45,15 +45,15 @@
 
     function set_content_size(){
         var width = window.getWidth() - $('nav').getWidth();
-        $('content').style.setProperty('width', width-20+'px');
-        $('content').style.setProperty('height', document.getHeight()+'px');
+        $('content').setStyle('width', width-20+'px');
+        $('content').setStyle('height', document.getHeight()+'px');
     }
 
     function change_onclick(){
         var docs = $$('#nav a');
         docs.each(function(doc){
             var href = doc.href;
-            doc.href = '#'+doc.innerText;
+            doc.set('href', '#'+doc.get('text'));
             doc.onclick = function(){
                 $('content').set('src', href);
             }
@@ -68,7 +68,7 @@
         for (var i=0; i<links.length; i++)
         {
             var link = links[i];
-            if (link.innerText.trim() == name){
+            if (link.get('text').trim() == name){
                 $('content').set('src', link.href);
             }
         }
