@@ -49,7 +49,9 @@
 
 FarBox会根据你自己模板目录下的文件，自动对应自定义URL。  
 
-比如`/template/you.html`，这个模板文件如果存在，那么，访问`http://yoursite.domain.com/you`就会自动对应到这个模板。
+比如`/template/you.html`，这个模板文件如果存在，那么，访问`http://yoursite.domain.com/you`就会自动对应到这个模板。  
+
+如果所定义的模板，最终返回的是json或者xml，模板文件名需要加上`__json`/`__xml`。比如`/template/you__json.html`，最终页面`http://yoursite.domain.com/you__json`渲染后返回给浏览器的`content_type`才会是正确的`application/json`
 
 - - - - - - - - 
 
